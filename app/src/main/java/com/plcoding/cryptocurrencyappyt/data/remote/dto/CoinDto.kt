@@ -1,6 +1,9 @@
 package com.plcoding.cryptocurrencyappyt.data.remote.dto
 
+import com.plcoding.cryptocurrencyappyt.domain.models.Coin
+
 data class CoinDto(
+
     val id: String,
     val is_active: Boolean,
     val is_new: Boolean,
@@ -8,4 +11,13 @@ data class CoinDto(
     val rank: Int,
     val symbol: String,
     val type: String
-)
+
+    )
+
+fun CoinDto.toCoin(): Coin {
+
+    return Coin(
+        id = id, is_active = is_active, name = name, rank = rank, symbol  = symbol
+    )
+
+}
