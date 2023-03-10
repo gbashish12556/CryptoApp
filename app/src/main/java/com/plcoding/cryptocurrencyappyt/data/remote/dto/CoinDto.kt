@@ -1,6 +1,6 @@
 package com.plcoding.cryptocurrencyappyt.data.remote.dto
 
-import com.plcoding.cryptocurrencyappyt.domain.models.Coin
+import com.plcoding.cryptocurrencyappyt.data.models.Coin
 
 data class CoinDto(
 
