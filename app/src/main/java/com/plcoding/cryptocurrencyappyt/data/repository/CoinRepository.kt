@@ -1,4 +1,4 @@
-package com.plcoding.cryptocurrencyappyt.domain.repository
+package com.plcoding.cryptocurrencyappyt.data.repository
 
 import com.plcoding.cryptocurrencyappyt.data.remote.dto.CoinDetailDto
 import com.plcoding.cryptocurrencyappyt.data.remote.dto.CoinDto

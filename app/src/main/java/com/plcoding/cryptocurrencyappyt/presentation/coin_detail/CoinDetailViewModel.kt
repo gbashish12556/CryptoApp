@@ -6,18 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plcoding.cryptocurrencyappyt.common.Constants
 import com.plcoding.cryptocurrencyappyt.common.Resource
-import com.plcoding.cryptocurrencyappyt.presentation.states.CoinDetailState
+import com.plcoding.cryptocurrencyappyt.presentation.model.CoinDetailState
 import com.plcoding.cryptocurrencyappyt.domain.use_cases.GetCoinUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
+
     val getCoinUseCase: GetCoinUseCase,
     savedStateHandle:SavedStateHandle
+
 ):ViewModel(){
 
     private val _state = mutableStateOf(CoinDetailState())
@@ -50,7 +51,7 @@ class CoinDetailViewModel @Inject constructor(
 
                 is Resource.Loading->{
 
-                    _state.value = CoinDetailState(error = result.message ?: "Loading...")
+                    _state.value = CoinDetailState(isLoading = true)
 
                 }
             }

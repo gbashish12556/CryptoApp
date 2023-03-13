@@ -1,10 +1,9 @@
 package com.plcoding.cryptocurrencyappyt.di
 
-import androidx.compose.ui.unit.Constraints
 import com.plcoding.cryptocurrencyappyt.common.Constants
 import com.plcoding.cryptocurrencyappyt.data.remote.CoinPaprikaApi
 import com.plcoding.cryptocurrencyappyt.data.repository.CoinRepoImpl
-import com.plcoding.cryptocurrencyappyt.domain.repository.CoinRepository
+import com.plcoding.cryptocurrencyappyt.data.repository.CoinRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +29,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCoinRepository(api:CoinPaprikaApi):CoinRepository{
+    fun provideCoinRepository(api:CoinPaprikaApi): CoinRepository {
         return CoinRepoImpl(api)
     }
 

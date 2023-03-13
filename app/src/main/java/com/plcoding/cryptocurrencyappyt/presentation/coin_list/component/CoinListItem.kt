@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.plcoding.cryptocurrencyappyt.data.models.Coin
-import java.lang.reflect.Modifier
+import androidx.compose.ui.Modifier
 
 @Composable
 fun CoinListItem(
@@ -19,10 +19,12 @@ fun CoinListItem(
     onItemClick:(Coin)->Unit
 ) {
 
-    Row(modifier =
-            Modifier.fillMaxWidth().clickable{ onItemClick(coin)}
-                .padding(20.dp),
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .clickable { onItemClick(coin) }
+        .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
+
     ) {
 
         Text(
@@ -34,7 +36,6 @@ fun CoinListItem(
         Text(
             text = if(coin.is_active) "active" else "inactive",
             color = if(coin.is_active) Color.Green else Color.Red,
-            fontStyle = FontStyle.FONT_SLANT_ITALIC,
             style = MaterialTheme.typography.body2,
             overflow =  TextOverflow.Ellipsis,
             modifier = Modifier.align(CenterVertically)
