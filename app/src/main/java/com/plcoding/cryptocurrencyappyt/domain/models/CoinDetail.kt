@@ -1,4 +1,4 @@
-package com.plcoding.cryptocurrencyappyt.data.models
+package com.plcoding.cryptocurrencyappyt.domain.models
 
 import com.plcoding.cryptocurrencyappyt.data.remote.dto.TeamMember
 

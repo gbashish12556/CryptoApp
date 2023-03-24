@@ -1,7 +1,7 @@
 package com.plcoding.cryptocurrencyappyt.domain.use_cases
 
 import com.plcoding.cryptocurrencyappyt.common.Resource
-import com.plcoding.cryptocurrencyappyt.data.models.CoinDetail
+import com.plcoding.cryptocurrencyappyt.domain.models.CoinDetail
 import com.plcoding.cryptocurrencyappyt.data.remote.dto.toCoinDetail
 import com.plcoding.cryptocurrencyappyt.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow

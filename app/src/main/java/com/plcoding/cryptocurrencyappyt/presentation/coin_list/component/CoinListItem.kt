@@ -10,12 +10,12 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.plcoding.cryptocurrencyappyt.data.models.Coin
+import com.plcoding.cryptocurrencyappyt.domain.models.Coin
 import androidx.compose.ui.Modifier
 
 @Composable
 fun CoinListItem(
-    coin:Coin,
+    coin: Coin,
     onItemClick:(Coin)->Unit
 ) {
 

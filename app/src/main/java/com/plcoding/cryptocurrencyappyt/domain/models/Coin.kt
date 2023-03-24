@@ -1,4 +1,4 @@
-package com.plcoding.cryptocurrencyappyt.data.models
+package com.plcoding.cryptocurrencyappyt.domain.models
 
 data class Coin(
 

@@ -1,6 +1,6 @@
 package com.plcoding.cryptocurrencyappyt.presentation.model
 
-import com.plcoding.cryptocurrencyappyt.data.models.CoinDetail
+import com.plcoding.cryptocurrencyappyt.domain.models.CoinDetail
 
 
 data class CoinDetailState(
