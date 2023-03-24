@@ -11,6 +11,7 @@ import com.plcoding.cryptocurrencyappyt.domain.use_cases.GetCoinUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,27 +37,32 @@ class CoinDetailViewModel @Inject constructor(
     private fun getCoin(coinId:String) {
 
 
-        getCoinUseCase(coinId = coinId).onEach {result->
+        viewModelScope.launch {
 
-            when(result){
+            getCoinUseCase(coinId = coinId).onEach {result->
 
-                is Resource.Success->{
-                    _state.value = CoinDetailState(coin = result.data)
+                when(result){
+
+                    is Resource.Success->{
+                        _state.value = CoinDetailState(coin = result.data)
+                    }
+
+                    is Resource.Error->{
+
+                        _state.value = CoinDetailState(error = result.message ?: "Something went wrong")
+                    }
+
+                    is Resource.Loading->{
+
+                        _state.value = CoinDetailState(isLoading = true)
+
+                    }
                 }
 
-                is Resource.Error->{
-
-                    _state.value = CoinDetailState(error = result.message ?: "Something went wrong")
-                }
-
-                is Resource.Loading->{
-
-                    _state.value = CoinDetailState(isLoading = true)
-
-                }
             }
 
-        }.launchIn(viewModelScope)
+        }
+
     }
 
 
