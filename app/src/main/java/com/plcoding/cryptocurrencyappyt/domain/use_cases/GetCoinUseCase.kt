@@ -14,5 +14,21 @@ import javax.inject.Inject
 class GetCoinUseCase @Inject constructor(
     private val repository: CoinRepository
 ) {
-    operator suspend fun invoke(coinId: String) = repository.getCoinById(coinId)
+    operator fun invoke(coinId: String) = flow {
+        try {
+
+            emit(Resource.Loading<CoinDetail>())
+            val coin = repository.getCoinById(coinId)
+            emit(Resource.Success<CoinDetail>(coin))
+
+        } catch(e: HttpException) {
+
+            emit(Resource.Error<CoinDetail>(message = e.localizedMessage ?: "An unexpected error occured"))
+
+        } catch(e: IOException) {
+
+            emit(Resource.Error<CoinDetail>(message = "Couldn't reach server. Check your internet connection."))
+
+        }
+    }
 }

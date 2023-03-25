@@ -36,9 +36,6 @@ class CoinDetailViewModel @Inject constructor(
     }
     private fun getCoin(coinId:String) {
 
-
-        viewModelScope.launch {
-
             getCoinUseCase(coinId = coinId).onEach {result->
 
                 when(result){
@@ -59,9 +56,7 @@ class CoinDetailViewModel @Inject constructor(
                     }
                 }
 
-            }
-
-        }
+        }.launchIn(viewModelScope)
 
     }
 

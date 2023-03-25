@@ -20,43 +20,13 @@ class CoinRepoImpl @Inject constructor(
     private val api:CoinPaprikaApi
 
 ): CoinRepository {
-    override suspend fun getCoins() = flow {
 
-        try {
-
-            emit(Resource.Loading<List<Coin>>())
-            val coins = api.getCoins().map { it.toCoin() }
-            emit(Resource.Success<List<Coin>>(coins))
-
-        } catch (e: HttpException) {
-            emit(
-                Resource.Error<List<Coin>>(
-                    message = e.localizedMessage ?: "An unexpected error occured"
-                )
-            )
-
-        } catch (e: IOException) {
-
-            emit(Resource.Error<List<Coin>>(message = "Couldn't reach server. Check your internet connection."))
-
-        }
+    override suspend fun getCoins(): List<Coin> {
+        return api.getCoins().map { it.toCoin() }
     }
 
-    override suspend fun getCoinById(coinId: String) = flow {
-        try {
-
-            emit(Resource.Loading<CoinDetail>())
-            val coin = api.getCoinById(coinId).toCoinDetail()
-            emit(Resource.Success<CoinDetail>(coin))
-
-        } catch(e: HttpException) {
-
-            emit(Resource.Error<CoinDetail>(message = e.localizedMessage ?: "An unexpected error occured"))
-
-        } catch(e: IOException) {
-
-            emit(Resource.Error<CoinDetail>(message = "Couldn't reach server. Check your internet connection."))
-
-        }
+    override suspend fun getCoinById(coinId: String): CoinDetail {
+        return api.getCoinById(coinId).toCoinDetail()
     }
+
 }
