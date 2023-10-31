@@ -13,13 +13,15 @@ import javax.inject.Inject
 
 class GetCoinUseCase @Inject constructor(
     private val repository: CoinRepository
-) {
-    operator fun invoke(coinId: String) = flow {
+):BaseCase<Flow<Resource<CoinDetail>>, String>() {
+    override suspend fun invoke(coinId: String?)= flow {
         try {
 
             emit(Resource.Loading<CoinDetail>())
-            val coin = repository.getCoinById(coinId)
-            emit(Resource.Success<CoinDetail>(coin))
+            coinId?.let { id ->
+                val coin = repository.getCoinById(id)
+                emit(Resource.Success<CoinDetail>(coin))
+            }
 
         } catch(e: HttpException) {
 
@@ -31,4 +33,5 @@ class GetCoinUseCase @Inject constructor(
 
         }
     }
+
 }
